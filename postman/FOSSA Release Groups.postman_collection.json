@@ -1,0 +1,53 @@
+{
+	"info": {
+		"_postman_id": "731b189d-2066-4145-b353-39464bf3ab24",
+		"name": "FOSSA Release Groups",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "Add project to release group",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"112\",\n    \"projects\": [\n        {\n            \"projectId\": \"custom+34566/test_test_4\",\n            \"branch\": \"v20230614\",\n            \"revisionId\": \"custom+34566/test_test_4$112\"\n        }\n    ],\n    \"projectsToDelete\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/project_group/{{project-group-id}}/release/{{release-group-id}} ",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"project_group",
+						"{{project-group-id}}",
+						"release",
+						"{{release-group-id}} "
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

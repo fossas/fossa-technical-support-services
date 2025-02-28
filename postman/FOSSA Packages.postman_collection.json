@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "1cc21b7b-fb34-4d82-aa18-f572f0e4fe64",
+		"name": "FOSSA Packages",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "Check package comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    try {",
+							"        pm.expect(pm.response.code).to.eql(200);",
+							"        pm.environment.get(\"variable_key\");",
+							"    } catch (e) {",
+							"        console.error(request.url)",
+							"        throw Error(e)",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://app.fossa.com/api/projects/{{fossa-package}}?",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"projects",
+						"{{fossa-package}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

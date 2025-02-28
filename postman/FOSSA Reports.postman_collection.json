@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "a5fa1475-8ed1-44ef-bfeb-b1ddc721182b",
+		"name": "FOSSA Reports",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "Update dependency metadata info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "bom_column_settings[]",
+							"value": "Authors",
+							"type": "default"
+						},
+						{
+							"key": "bom_column_settings[]",
+							"value": "Library",
+							"type": "default"
+						},
+						{
+							"key": "bom_column_settings[]",
+							"value": "DependencyPaths",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcmboling%2Fpotential-spoon",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"projects",
+						"git%2Bgithub.com%2Fcmboling%2Fpotential-spoon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download plain text report",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://app.fossa.com/api/revisions/git%2Bgithub.com%2Fcmboling%2Fpotential-spoon%24f5b0ad1c10923475620c9b5bb5d0561271354e38/attribution/download?includeProjectLicense=&includeLicenseScan=&includeDependencySummary=&includeDirectDependencies=true&includeDeepDependencies=true&includeLicenseList=true&includeVulnerabilities=&format=TXT&includeLicenseHeaders=&download=true",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"revisions",
+						"git%2Bgithub.com%2Fcmboling%2Fpotential-spoon%24f5b0ad1c10923475620c9b5bb5d0561271354e38",
+						"attribution",
+						"download"
+					],
+					"query": [
+						{
+							"key": "includeProjectLicense",
+							"value": ""
+						},
+						{
+							"key": "includeLicenseScan",
+							"value": ""
+						},
+						{
+							"key": "includeDependencySummary",
+							"value": ""
+						},
+						{
+							"key": "includeDirectDependencies",
+							"value": "true"
+						},
+						{
+							"key": "includeDeepDependencies",
+							"value": "true"
+						},
+						{
+							"key": "includeLicenseList",
+							"value": "true"
+						},
+						{
+							"key": "includeVulnerabilities",
+							"value": ""
+						},
+						{
+							"key": "format",
+							"value": "TXT"
+						},
+						{
+							"key": "includeLicenseHeaders",
+							"value": ""
+						},
+						{
+							"key": "download",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

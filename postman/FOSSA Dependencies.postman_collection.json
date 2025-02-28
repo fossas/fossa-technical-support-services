@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "c9f344e8-1cf2-4737-9cab-7b1a4aa24df2",
+		"name": "FOSSA Dependencies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "Replace a dependency",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dependencyData\": {\n        \"kind\": \"replace\",\n        \"newDependency\": {\n            \"kind\": \"user\",\n            \"name\": \"testing1234\",\n            \"version\": \"1.0.2\",\n            \"licenses\": [\n                {\n                    \"licenseId\": \"MIT\",\n                    \"licenseText\": \"testestest\",\n                    \"copyright\": \"\"\n                }\n            ]\n        },\n        \"overwrittenLocator\": \"go+cloud.google.com/go/monitoring/apiv3\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/revisions/git%2Bgithub.com%2Fcarloskcheung%2Fnokogiri%24e65993e85c88a9da7bab5f1c43648294428824ad/dependencies",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"revisions",
+						"git%2Bgithub.com%2Fcarloskcheung%2Fnokogiri%24e65993e85c88a9da7bab5f1c43648294428824ad",
+						"dependencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ignore a dependency",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://app.fossa.com/api/revisions/{{revisionLocator}}/dependencies/{{depLocator}}/ignore",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"revisions",
+						"{{revisionLocator}}",
+						"dependencies",
+						"{{depLocator}}",
+						"ignore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Correct a license",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"project\": {\n\t\t\"url\": \"google.com2\"\n\t},\n\t\"licenses\": [\n\t\t[{\n\t\t\t\"licenseId\": \"MIT\",\n\t\t\t\"text\": \"u2pdating the raw license text with the copyright\"\n\t\t}]\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/projects/pip%2Bdocutils/correction",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"projects",
+						"pip%2Bdocutils",
+						"correction"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{fossa-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "revisionLocator",
+			"value": "custom%2B48%2Fgithub.com%2FCrowdtilt%2FCrowdtiltOpen%24daa457b38b3f285a87c00316760240954bfd733e"
+		},
+		{
+			"key": "depLocator",
+			"value": "gem+crowdtilt!$"
+		}
+	]
+}

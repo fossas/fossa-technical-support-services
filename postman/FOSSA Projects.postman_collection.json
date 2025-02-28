@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "ed2a86d9-0089-4929-9509-0edb849b5a87",
+		"name": "FOSSA Projects",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "List project issues",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"locators\": [\"npm+immer$1.10.0\", \"gem+nokogiri$1.5.9\"] }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/vulns/by-locator",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"vulns",
+						"by-locator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Project Title",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "fossa-diffing",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/projects/custom%2B12948%2Fgithub.com%2Fcmboling%2Ffossa-diff-demo",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"projects",
+						"custom%2B12948%2Fgithub.com%2Fcmboling%2Ffossa-diff-demo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all revisions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "projectId",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/revisions",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"revisions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a single revision",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://app.fossa.com/api/revisions/{{revisionLocator}}",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"revisions",
+						"{{revisionLocator}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

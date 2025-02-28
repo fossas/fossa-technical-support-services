@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "d019a996-b2a1-4705-b859-c08bc0e15def",
+		"name": "FOSSA SBOM Upload",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "Get a signed URL for SBOM upload",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{fossa-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://app.fossa.io/api/components/signed_url?packageSpec=This-is-a-new-sbom-1&revision=this-is-revision-1&fileType=sbom",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"io"
+					],
+					"path": [
+						"api",
+						"components",
+						"signed_url"
+					],
+					"query": [
+						{
+							"key": "packageSpec",
+							"value": "This-is-a-new-sbom-1"
+						},
+						{
+							"key": "revision",
+							"value": "this-is-revision-1"
+						},
+						{
+							"key": "fileType",
+							"value": "sbom"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload SBOM to the signed URL",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/path/to/your/sbom/file.sbom"
+					}
+				},
+				"url": {
+					"raw": "{{signed_url}}",
+					"host": [
+						"{{signed_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger a FOSSA build for SBOM",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{fossa-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"archives\": [\n        {\n            \"packageSpec\": \"This-is-a-new-sbom-1\",\n            \"revision\": \"this-is-revision-1\",\n            \"fileType\": \"sbom\"\n        }\n    ],\n    \"selectedTeams\": [\n        {\n            \"id\": 123,\n            \"name\": \"bruh\",\n            \"organizationId\": 456\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://app.fossa.io/api/components/build",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"io"
+					],
+					"path": [
+						"api",
+						"components",
+						"build"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "FOSSA_TOKEN",
+			"value": "<your_fossa_token>"
+		},
+		{
+			"key": "package_spec",
+			"value": "1458_BDGen_AUTHSYS.019.01.00"
+		},
+		{
+			"key": "revision",
+			"value": "BD_V_2024_09_20_1309"
+		},
+		{
+			"key": "signed_url",
+			"value": "<signed_url>"
+		}
+	]
+}

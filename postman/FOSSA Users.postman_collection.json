@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "1339039d-ae07-44f8-96f3-f177239a0e6d",
+		"name": "FOSSA Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "Get the list of teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>ID</th>",
+							"        <th>Organization ID</th>",
+							"        <th>Name</th>",
+							"        <th>Default Role ID</th>",
+							"        <th>Auto Add Users</th>",
+							"        <th>Created At</th>",
+							"        <th>Updated At</th>",
+							"        <th>Team Type</th>",
+							"        <th>Team Users</th>",
+							"        <th>Team Release Groups Count</th>",
+							"        <th>Team Projects Count</th>",
+							"    </tr>",
+							"    ",
+							"    {{#each response}}",
+							"        <tr>",
+							"            <td>{{id}}</td>",
+							"            <td>{{organizationId}}</td>",
+							"            <td>{{name}}</td>",
+							"            <td>{{defaultRoleId}}</td>",
+							"            <td>{{autoAddUsers}}</td>",
+							"            <td>{{createdAt}}</td>",
+							"            <td>{{updatedAt}}</td>",
+							"            <td>{{teamType}}</td>",
+							"            <td>{{teamUsers.length}}</td>",
+							"            <td>{{teamReleaseGroupsCount}}</td>",
+							"            <td>{{teamProjectsCount}}</td>",
+							"        </tr>",
+							"    {{/each}}",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    return {response: pm.response.json()}",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://app.fossa.com/api/teams",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the list of users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>ID</th>",
+							"        <th>Username</th>",
+							"        <th>Email</th>",
+							"        <th>Email Verified</th>",
+							"        <th>Demo</th>",
+							"        <th>Super</th>",
+							"        <th>Joined</th>",
+							"        <th>Last Visit</th>",
+							"        <th>Terms Agreed</th>",
+							"        <th>Full Name</th>",
+							"        <th>Phone</th>",
+							"        <th>Role</th>",
+							"        <th>Organization ID</th>",
+							"        <th>SSO Only</th>",
+							"        <th>Enabled</th>",
+							"        <th>Has Set Password</th>",
+							"        <th>Install Admin</th>",
+							"        <th>Created At</th>",
+							"        <th>Updated At</th>",
+							"        <th>User Role ID</th>",
+							"        <th>User Role Name</th>",
+							"        <th>User Role Organization ID</th>",
+							"        <th>User Role Is Custom</th>",
+							"        <th>User Role Scope</th>",
+							"        <th>Token ID</th>",
+							"        <th>Token Name</th>",
+							"        <th>Token Is Disabled</th>",
+							"        <th>Token Updated At</th>",
+							"        <th>Token Created At</th>",
+							"        <th>Token Meta Push Only</th>",
+							"        <th>Team User Role ID</th>",
+							"        <th>Team User Team ID</th>",
+							"        <th>Team User Team Name</th>",
+							"        <th>Organization ID</th>",
+							"        <th>Organization Title</th>",
+							"        <th>Organization Access Level</th>",
+							"    </tr>",
+							"    ",
+							"    {{#each response}}",
+							"        <tr>",
+							"            <td>{{id}}</td>",
+							"            <td>{{username}}</td>",
+							"            <td>{{email}}</td>",
+							"            <td>{{email_verified}}</td>",
+							"            <td>{{demo}}</td>",
+							"            <td>{{super}}</td>",
+							"            <td>{{joined}}</td>",
+							"            <td>{{last_visit}}</td>",
+							"            <td>{{terms_agreed}}</td>",
+							"            <td>{{full_name}}</td>",
+							"            <td>{{phone}}</td>",
+							"            <td>{{role}}</td>",
+							"            <td>{{organizationId}}</td>",
+							"            <td>{{sso_only}}</td>",
+							"            <td>{{enabled}}</td>",
+							"            <td>{{has_set_password}}</td>",
+							"            <td>{{install_admin}}</td>",
+							"            <td>{{createdAt}}</td>",
+							"            <td>{{updatedAt}}</td>",
+							"            <td>{{userRole.roleId}}</td>",
+							"            <td>{{userRole.role.id}}</td>",
+							"            <td>{{userRole.role.organizationId}}</td>",
+							"            <td>{{userRole.role.isCustom}}</td>",
+							"            <td>{{userRole.role.name}}</td>",
+							"            <td>{{tokens.id}}</td>",
+							"            <td>{{tokens.name}}</td>",
+							"            <td>{{tokens.isDisabled}}</td>",
+							"            <td>{{tokens.updatedAt}}</td>",
+							"            <td>{{tokens.createdAt}}</td>",
+							"            <td>{{tokens.meta.pushOnly}}</td>",
+							"            <td>{{teamUsers.roleId}}</td>",
+							"            <td>{{teamUsers.team.id}}</td>",
+							"            <td>{{teamUsers.team.name}}</td>",
+							"            <td>{{organization.id}}</td>",
+							"            <td>{{organization.title}}</td>",
+							"            <td>{{organization.access_level}}</td>",
+							"        </tr>",
+							"    {{/each}}",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    return {response: pm.response.json()}",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://app.fossa.com/api/users?count=100&page=1",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "100"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "4f1d5b45-80b1-4111-bea0-2533a16b8434",
+		"name": "FOSSA Issues",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31042978"
+	},
+	"item": [
+		{
+			"name": "Ignore an issue",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fossa-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"type\":\"ignore\",\n    \"notes\":\"{{timestamp}} Ignoring per Legal request - base utilities\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.fossa.com/api/v2/issues?category=licensing&scope%5Btype%5D=global&ids%5B0%5D={{issue-id}}",
+					"protocol": "https",
+					"host": [
+						"app",
+						"fossa",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"issues"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "licensing"
+						},
+						{
+							"key": "scope%5Btype%5D",
+							"value": "global"
+						},
+						{
+							"key": "ids%5B0%5D",
+							"value": "{{issue-id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
